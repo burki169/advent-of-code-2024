@@ -23,13 +23,7 @@ public class Day1
         }
         firstGroupLocations.Sort();
         secondGroupLocations.Sort();
-        int totalDiff = 0;
-        for (var i = 0; i < firstGroupLocations.Count; i++)
-        {
-            var diff = Math.Abs(firstGroupLocations[i] - secondGroupLocations[i]);
-            totalDiff += diff;
-        }
-
-        return totalDiff;
+        
+        return firstGroupLocations.Select( (value, index) => Math.Abs(value - secondGroupLocations[index])).Sum();
     }
 }
