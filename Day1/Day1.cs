@@ -1,20 +1,13 @@
 ﻿namespace AdventOfCode2024.Day1;
 
-public class Day1
+public class Day1(string pathToInputFile) : Day(pathToInputFile)
 {
-    private readonly string _pathToInputFile;
-
-    public Day1(string pathToInputFile)
-    {
-        _pathToInputFile = pathToInputFile;
-    }
-    
     public int Solve()
     {
         List<int> firstGroupLocations = new();
         List<int> secondGroupLocations = new();
         
-        var lines = File.ReadAllLines(_pathToInputFile);
+        var lines = File.ReadAllLines(PathToInputFile);
         foreach (var line in lines)
         {
             var values = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
@@ -24,6 +17,8 @@ public class Day1
         firstGroupLocations.Sort();
         secondGroupLocations.Sort();
         
-        return firstGroupLocations.Select( (value, index) => Math.Abs(value - secondGroupLocations[index])).Sum();
+        var part1= firstGroupLocations.Select( (value, index) => Math.Abs(value - secondGroupLocations[index])).Sum();
+        var part2 =  firstGroupLocations.Select((value, index) => value*secondGroupLocations.Count(v => v == value)).Sum();
+        return part2;
     }
 }
